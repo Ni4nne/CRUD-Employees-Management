@@ -46,9 +46,9 @@
     </div>
 
     <div class="mb-3">
-      <label for="lastname" class="form-label">Last Name</label>
-      <input type="text"
-        class="form-control" name="lastname" id="lastname" aria-describedby="helpId">
+      <label for="entrydate" class="form-label">Entry Date</label>
+      <input type="date"
+        class="form-control" name="entrydate" id="entrydate" aria-describedby="helpId">
     </div>
 
     </form>
