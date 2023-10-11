@@ -1,10 +1,9 @@
 <?php include("../../templates/header.php"); ?>
 
 <br>
-
 <div class="card">
     <div class="card-header">
-        <a name="" id="" class="btn btn-primary" href="create.php" role="button">Add</a>
+        <a name="" id="" class="btn btn-primary" href="create.php" role="button">Add new employee</a>
     </div>
     <div class="card-body">
        

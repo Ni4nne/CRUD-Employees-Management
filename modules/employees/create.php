@@ -11,7 +11,7 @@
 
     <div class="mb-3">
       <label for="picture" class="form-label">Picture</label>
-      <input type="image"
+      <input type="file"
         class="form-control" name="picture" id="picture" aria-describedby="helpId">
     </div>
 
@@ -28,9 +28,17 @@
     </div>
 
     <div class="mb-3">
-      <label for="role" class="form-label">Role</label>
-      <input type="text"
-        class="form-control" name="role" id="role" aria-describedby="helpId">
+        <label for="" class="form-label">Role</label>
+        <select class="form-select form-select-sm" name="idrole" id="idrole">
+            <option selected>Select one</option>
+            <option value="">Marketing</option>
+            <option value="">Operations</option>
+            <option value="">Finance</option>
+            <option value="">Sales</option>
+            <option value="">HR</option>
+            <option value="">Purchase</option>
+
+        </select>
     </div>
 
     <div class="mb-3">
@@ -51,6 +59,8 @@
         class="form-control" name="entrydate" id="entrydate" aria-describedby="helpId">
     </div>
 
+    <button type="submit" class="btn btn-primary"> Submit </button>
+    <a name="" id="" class="btn btn-danger" href="index.php" role="button">Cancel</a>
     </form>
 
     </div>
