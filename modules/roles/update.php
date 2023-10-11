@@ -1,6 +1,6 @@
 <?php include("../../templates/header.php"); ?>
 
-Update Employee
+Update Role
 
 
 <?php include("../../templates/footer.php"); ?>

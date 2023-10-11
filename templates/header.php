@@ -25,7 +25,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $url_base;?>modules/positions">Positions</a>
+            <a class="nav-link" href="<?php echo $url_base;?>modules/roles">Positions</a>
         </li>
 
         <li class="nav-item">
