@@ -1,3 +1,12 @@
+<?php include("../../database.php");
+
+$sql=$con->prepare("SELECT * FROM roles");
+$sql->execute();
+$rolelist=$sql->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+
 <?php include("../../templates/header.php"); ?>
 
 <br>
@@ -16,14 +25,20 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                <?php foreach($rolelist as $key) { ?>
+
                     <tr class="">
-                        <td scope="row">1</td>
-                        <td>Sales assistant</td>
+                        <td scope="row"><?php echo $key['id']?></td>
+                        <td><?php echo $key['roledescription']?></td>
                         <td>
                             <input name="btnupdate" id="btnupdate" class="btn btn-primary" type="button" value="Update">
                             <input name="btndelete" id="btndelete" class="btn btn-danger" type="button" value="Delete">
                         </td>
                     </tr>
+
+                <?php } ?>
+                    
                 </tbody>
             </table>
         </div>
