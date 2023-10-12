@@ -6,7 +6,6 @@ $rolelist=$sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-
 <?php include("../../templates/header.php"); ?>
 
 <br>
@@ -44,7 +43,5 @@ $rolelist=$sql->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </div>
-
-
 
 <?php include("../../templates/footer.php"); ?>
