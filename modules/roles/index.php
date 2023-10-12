@@ -39,7 +39,7 @@ $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <td scope="row"><?php echo $key['id']; ?></td>
                             <td><?php echo $key['roledescription']; ?></td>
                             <td>
-                                <input name="btnupdate" id="btnupdate" class="btn btn-primary" type="button" value="Update">
+                                <a class="btn btn-primary" href="update.php?txtID=<?php echo $key['id']; ?>" role="button">Update</a>
                                 <a class="btn btn-danger" href="index.php?txtID=<?php echo $key['id']; ?>" role="button">Delete</a>
                             </td>
                         </tr>

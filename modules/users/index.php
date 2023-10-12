@@ -1,3 +1,19 @@
+<?php include("../../database.php");
+
+if (isset($_GET['txtID'])) {
+    $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+    $sql = $con->prepare("DELETE FROM users WHERE id=:id");
+    $sql->bindParam(":id", $txtID);
+    $sql->execute();
+    header("location: index.php");
+}
+
+$sql = $con->prepare("SELECT * FROM users");
+$sql->execute();
+$userlist = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <?php include("../../templates/header.php"); ?>
 
 <br>
@@ -18,22 +34,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="">
-                        <td scope="row">1</td>
-                        <td>Admin</td>
-                        <td>admin@admin.com</td>
-                        <td>admin</td>
-                        <td>
-                            <input name="btnupdate" id="btnupdate" class="btn btn-primary" type="button" value="Update">
-                            <input name="btndelete" id="btndelete" class="btn btn-danger" type="button" value="Delete">
-                        </td>
-                    </tr>
+                    <?php foreach ($userlist as $key) { ?>
+                        <tr class="">
+                            <td scope="row"><?php echo $key['id']; ?></td>
+                            <td><?php echo $key['username']; ?></td>
+                            <td><?php echo $key['email']; ?></td>
+                            <td><?php echo $key['password']; ?></td>
+                            <td>
+                                <a class="btn btn-primary" href="update.php?txtID=<?php echo $key['id']; ?>" role="button">Update</a>
+                                <a class="btn btn-danger" href="index.php?txtID=<?php echo $key['id']; ?>" role="button">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-
 
 <?php include("../../templates/footer.php"); ?>

@@ -1,3 +1,20 @@
+<?php include("../../database.php");
+
+if($_POST){
+
+        $username=(isset($_POST["username"])?$_POST["username"]:"");
+        $email=(isset($_POST["email"])?$_POST["email"]:"");
+        $password=(isset($_POST["password"])?$_POST["password"]:"");
+        
+        $sql=$con->prepare("INSERT INTO users(id,username, email, password) VALUES (null, :username, :email, :password)");
+
+        $sql->bindParam(":username", $username);
+        $sql->bindParam(":email", $email);
+        $sql->bindParam(":password", $password);
+        $sql->execute();
+        header("location: index.php");
+}?>
+
 <?php include("../../templates/header.php"); ?>
 
 <br>

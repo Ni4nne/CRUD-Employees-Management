@@ -1,7 +1,6 @@
 <?php include("../../database.php");
 
 if($_POST){
-    print_r($_POST);
 
         $roledescription=(isset($_POST["roledescription"])?$_POST["roledescription"]:"");
         $sql=$con->prepare("INSERT INTO roles(id,roledescription) VALUES (null, :roledescription)");
