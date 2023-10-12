@@ -1,8 +1,16 @@
 <?php include("../../database.php");
 
-$sql=$con->prepare("SELECT * FROM roles");
+if (isset($_GET['txtID'])) {
+    $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+    $sql = $con->prepare("DELETE FROM roles WHERE id=:id");
+    $sql->bindParam(":id", $txtID);
+    $sql->execute();
+    header("location: index.php");
+}
+
+$sql = $con->prepare("SELECT * FROM roles");
 $sql->execute();
-$rolelist=$sql->fetchAll(PDO::FETCH_ASSOC);
+$rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -25,19 +33,19 @@ $rolelist=$sql->fetchAll(PDO::FETCH_ASSOC);
                 </thead>
                 <tbody>
 
-                <?php foreach($rolelist as $key) { ?>
+                    <?php foreach ($rolelist as $key) { ?>
 
-                    <tr class="">
-                        <td scope="row"><?php echo $key['id']?></td>
-                        <td><?php echo $key['roledescription']?></td>
-                        <td>
-                            <input name="btnupdate" id="btnupdate" class="btn btn-primary" type="button" value="Update">
-                            <input name="btndelete" id="btndelete" class="btn btn-danger" type="button" value="Delete">
-                        </td>
-                    </tr>
+                        <tr class="">
+                            <td scope="row"><?php echo $key['id']; ?></td>
+                            <td><?php echo $key['roledescription']; ?></td>
+                            <td>
+                                <input name="btnupdate" id="btnupdate" class="btn btn-primary" type="button" value="Update">
+                                <a class="btn btn-danger" href="index.php?txtID=<?php echo $key['id']; ?>" role="button">Delete</a>
+                            </td>
+                        </tr>
 
-                <?php } ?>
-                    
+                    <?php } ?>
+
                 </tbody>
             </table>
         </div>
