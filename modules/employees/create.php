@@ -1,3 +1,17 @@
+<?php include("../../database.php");
+
+if($_POST){
+  print_r($_POST);
+  print_r($_FILES);
+}
+
+$sql = $con->prepare("SELECT * FROM roles");
+$sql->execute();
+$rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
 <?php include("../../templates/header.php"); ?>
 
 <br>
@@ -27,15 +41,12 @@
       <div class="mb-3">
         <label for="" class="form-label">Role</label>
         <select class="form-select form-select-sm" name="idrole" id="idrole">
-          <option selected>Select one</option>
-          <option value="">Marketing</option>
-          <option value="">Operations</option>
-          <option value="">Finance</option>
-          <option value="">Sales</option>
-          <option value="">HR</option>
-          <option value="">Purchase</option>
-
+          <?php foreach ($rolelist as $key) { ?>
+            <option value="<?php echo $key['id']?>">
+              <?php echo $key['roledescription']?></option>
+              <?php } ?>
         </select>
+        
       </div>
 
       <div class="mb-3">

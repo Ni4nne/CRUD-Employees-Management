@@ -1,6 +1,10 @@
 <?php include("../../database.php");
 
-$sql = $con->prepare("SELECT * FROM employees");
+$sql = $con->prepare("SELECT *,
+(SELECT roledescription 
+FROM roles 
+WHERE roles.id=employees.idrole LIMIT 1) AS role 
+FROM employees");
 $sql->execute();
 $employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -39,7 +43,7 @@ $employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <td> <?php echo $key['picture']; ?></td>
                         <td> <?php echo $key['lastname']; ?> </td>
                         <td> <?php echo $key['firstname']; ?> </td>
-                        <td> <?php echo $key['idrole']; ?> </td>
+                        <td> <?php echo $key['role']; ?> </td>
                         <td> <?php echo $key['email']; ?> </td>
                         <td> <?php echo $key['phone']; ?> </td>
                         <td> <?php echo $key['entrydate']; ?> </td>
