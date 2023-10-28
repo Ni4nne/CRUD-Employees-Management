@@ -1,8 +1,31 @@
 <?php include("../../database.php");
 
 if($_POST){
-  print_r($_POST);
-  print_r($_FILES);
+
+  $lastname=(isset($_POST["lastname"])?$_POST["lastname"]:"");
+  $firstname=(isset($_POST["firstname"])?$_POST["firstname"]:"");
+  $idrole=(isset($_POST["idrole"])?$_POST["idrole"]:"");
+  $email=(isset($_POST["email"])?$_POST["email"]:"");
+  $phone=(isset($_POST["phone"])?$_POST["phone"]:"");
+  $entrydate=(isset($_POST["entrydate"])?$_POST["entrydate"]:"");
+  $picture=(isset($_FILES["picture"]["name"])?$_FILES["picture"]["name"]:"");
+
+  $sql=$con->prepare("INSERT INTO 
+  `employees` (`id`, `picture`, `lastname`, `firstname`, `idrole`, `email`, `phone`, `entrydate`) 
+  VALUES (NULL, :picture, :lastname, :firstname, :idrole, :email, :phone, :entrydate);");
+
+  $sql->bindParam(":lastname", $lastname);
+  $sql->bindParam(":firstname", $firstname);
+  $sql->bindParam(":idrole", $idrole);
+  $sql->bindParam(":email", $email);
+  $sql->bindParam(":phone", $phone);
+  $sql->bindParam(":entrydate", $entrydate);
+  $sql->bindParam(":picture", $picture);
+
+  $sql->execute();
+
+  header("location: index.php");
+
 }
 
 $sql = $con->prepare("SELECT * FROM roles");
@@ -46,7 +69,7 @@ $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
               <?php echo $key['roledescription']?></option>
               <?php } ?>
         </select>
-        
+
       </div>
 
       <div class="mb-3">
