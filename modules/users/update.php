@@ -2,6 +2,7 @@
 
 if (isset($_GET['txtID'])) {
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+
     $sql = $con->prepare("SELECT * FROM users WHERE id=:id");
     $sql->bindParam(":id", $txtID);
     $sql->execute();
@@ -14,6 +15,7 @@ if (isset($_GET['txtID'])) {
 
 if($_POST){
     $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
+
     $username=(isset($_POST["username"])?$_POST["username"]:"");
     $email=(isset($_POST["email"])?$_POST["email"]:"");
     $password=(isset($_POST["password"])?$_POST["password"]:"");
@@ -24,6 +26,7 @@ if($_POST){
     $sql->bindParam(":password", $password);
     $sql->bindParam(":id", $txtID);
     $sql->execute();
+    
     header("location: index.php");
 }?>
 

@@ -6,7 +6,8 @@ if($_POST){
         $email=(isset($_POST["email"])?$_POST["email"]:"");
         $password=(isset($_POST["password"])?$_POST["password"]:"");
         
-        $sql=$con->prepare("INSERT INTO users(id,username, email, password) VALUES (null, :username, :email, :password)");
+        $sql=$con->prepare("INSERT INTO users(id,username, email, password) 
+        VALUES (null, :username, :email, :password)");
 
         $sql->bindParam(":username", $username);
         $sql->bindParam(":email", $email);

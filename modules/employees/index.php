@@ -1,3 +1,11 @@
+<?php include("../../database.php");
+
+$sql = $con->prepare("SELECT * FROM employees");
+$sql->execute();
+$employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <?php include("../../templates/header.php"); ?>
 
 <br>
@@ -11,6 +19,7 @@
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr class="table-primary">
+                    <th scope="col">Id</th>
                     <th scope="col">Picture</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">First Name</th>
@@ -22,19 +31,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="">
-                    <td> image.jpg </td>
-                    <td> Doe </td>
-                    <td> John </td>
-                    <td> Marketing Assistant </td>
-                    <td> johndoe@johndoe.com </td>
-                    <td> 123456789 </td>
-                    <td> 01/01/2023 </td>
-                    <td> <a name="" id="" class="btn btn-primary" href="#" role="button">Update</a> 
-                        <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
-                    </td>
-                </tr>
-                
+
+                <?php foreach ($employeeslist as $key) { ?>
+
+                    <tr class="">
+                        <td> <?php echo $key['id']; ?> </td>
+                        <td> <?php echo $key['picture']; ?></td>
+                        <td> <?php echo $key['lastname']; ?> </td>
+                        <td> <?php echo $key['firstname']; ?> </td>
+                        <td> <?php echo $key['idrole']; ?> </td>
+                        <td> <?php echo $key['email']; ?> </td>
+                        <td> <?php echo $key['phone']; ?> </td>
+                        <td> <?php echo $key['entrydate']; ?> </td>
+                        <td> 
+                            <a name="" id="" class="btn btn-primary" href="#" role="button">Update</a> 
+                            <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+                        </td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>

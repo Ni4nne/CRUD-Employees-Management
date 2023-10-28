@@ -2,9 +2,11 @@
 
 if (isset($_GET['txtID'])) {
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+
     $sql = $con->prepare("DELETE FROM users WHERE id=:id");
     $sql->bindParam(":id", $txtID);
     $sql->execute();
+    
     header("location: index.php");
 }
 
