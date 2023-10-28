@@ -40,7 +40,11 @@ $employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                     <tr class="">
                         <td> <?php echo $key['id']; ?> </td>
-                        <td> <?php echo $key['picture']; ?></td>
+                        <td>
+                            <img width="70" 
+                            src="<?php echo $key['picture']; ?>"
+                            class="img-fluid rounded" alt=""/>  
+                        </td>
                         <td> <?php echo $key['lastname']; ?> </td>
                         <td> <?php echo $key['firstname']; ?> </td>
                         <td> <?php echo $key['role']; ?> </td>

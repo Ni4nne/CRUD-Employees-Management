@@ -20,8 +20,16 @@ if($_POST){
   $sql->bindParam(":email", $email);
   $sql->bindParam(":phone", $phone);
   $sql->bindParam(":entrydate", $entrydate);
-  $sql->bindParam(":picture", $picture);
 
+  
+  $date_picture = new DateTime(); //Get current time
+  $filePictureName=($picture!='')?$date_picture->getTimestamp()."_".$_FILES["picture"]['name']:""; //Create new file name with the current time
+  $tmp_picture=$_FILES["picture"]["tmp_name"]; //Use a temporary file
+
+  if($tmp_picture!=''){ //If the temporary picture is not empty
+    move_uploaded_file($tmp_picture, "./".$filePictureName); //Moves the temporary file to a new location
+  }
+  $sql->bindParam(":picture", $filePictureName);//Update the name in the database
   $sql->execute();
 
   header("location: index.php");
