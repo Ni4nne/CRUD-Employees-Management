@@ -1,5 +1,31 @@
 <?php include("../../database.php");
 
+if (isset($_GET['txtID'])) {
+    $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+
+    //Search the picture of the employee
+    $sql = $con->prepare("SELECT picture FROM employees where id=:id");
+    $sql->bindParam(":id", $txtID);
+    $sql->execute();
+    $get_picture= $sql->fetch(PDO::FETCH_LAZY);
+
+    if(isset($get_picture["picture"]) && $get_picture["picture"]!=""){
+        if(file_exists("./".$get_picture["picture"])){
+            unlink("./".$get_picture["picture"]);
+
+        }
+    }
+
+
+
+    /*
+    $sql = $con->prepare("DELETE FROM employees WHERE id=:id");
+    $sql->bindParam(":id", $txtID);
+    $sql->execute();
+    header("location: index.php");
+    */
+}
+
 $sql = $con->prepare("SELECT *,
 (SELECT roledescription 
 FROM roles 
@@ -52,8 +78,8 @@ $employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <td> <?php echo $key['phone']; ?> </td>
                         <td> <?php echo $key['entrydate']; ?> </td>
                         <td> 
-                            <a name="" id="" class="btn btn-primary" href="#" role="button">Update</a> 
-                            <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+                            <a class="btn btn-primary" href="update.php?txtID=<?php echo $key['id']; ?>" role="button">Update</a>
+                            <a class="btn btn-danger" href="index.php?txtID=<?php echo $key['id']; ?>" role="button">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>
