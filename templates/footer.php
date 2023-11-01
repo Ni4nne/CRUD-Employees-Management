@@ -10,6 +10,25 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+<script>
+
+$(document).ready(function(){
+$("#tableID").DataTable({
+  "pageLength":3,
+  lengthMenu:[
+    [3,10,25,50],
+    [3,10,25,50]
+  ],
+  "language":{
+    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/en-EN.json"
+  }
+
+});
+  
+});
+
+</script>
+
 </body>
 
 </html>

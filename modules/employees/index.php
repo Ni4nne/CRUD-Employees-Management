@@ -42,7 +42,7 @@ $employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
     <div class="card-body">
        
     <div class="table-responsive-sm">
-        <table class="table table-hover">
+        <table id="tableID" class="table table-hover">
             <thead class="thead-dark">
                 <tr class="table-primary">
                     <th scope="col">Id</th>
