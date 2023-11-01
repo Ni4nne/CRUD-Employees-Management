@@ -22,7 +22,67 @@ if (isset($_GET['txtID'])) {
   $sql->execute();
   $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+if($_POST){
+  $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
+  $lastname=(isset($_POST["lastname"])?$_POST["lastname"]:"");
+  $firstname=(isset($_POST["firstname"])?$_POST["firstname"]:"");
+  $idrole=(isset($_POST["idrole"])?$_POST["idrole"]:"");
+  $email=(isset($_POST["email"])?$_POST["email"]:"");
+  $phone=(isset($_POST["phone"])?$_POST["phone"]:"");
+  $entrydate=(isset($_POST["entrydate"])?$_POST["entrydate"]:"");
+  
+  $sql=$con->prepare("UPDATE employees SET 
+  lastname=:lastname,
+  firstname=:firstname,
+  idrole=:idrole,
+  email=:email,
+  phone=:phone,
+  entrydate=:entrydate
+  WHERE id=:id");
+
+  $sql->bindParam(":lastname", $lastname);
+  $sql->bindParam(":firstname", $firstname);
+  $sql->bindParam(":idrole", $idrole);
+  $sql->bindParam(":email", $email);
+  $sql->bindParam(":phone", $phone);
+  $sql->bindParam(":entrydate", $entrydate);
+  $sql->bindParam(":id", $txtID);
+  $sql->execute();
+
+  $picture=(isset($_FILES["picture"]["name"])?$_FILES["picture"]["name"]:"");
+
+  $date_picture = new DateTime(); //Get current time
+  $filePictureName=($picture!='')?$date_picture->getTimestamp()."_".$_FILES["picture"]['name']:""; //Create new file name with the current time
+  $tmp_picture=$_FILES["picture"]["tmp_name"]; //Use a temporary file
+
+  if($tmp_picture!=''){ //If the temporary picture is not empty
+    move_uploaded_file($tmp_picture, "./".$filePictureName); //Moves the temporary file to new location
+
+        //Search older picture
+        $sql = $con->prepare("SELECT picture FROM employees where id=:id");
+        $sql->bindParam(":id", $txtID);
+        $sql->execute();
+        $get_picture= $sql->fetch(PDO::FETCH_LAZY);
+    
+        //Delete older picture
+        if(isset($get_picture["picture"]) && $get_picture["picture"]!=""){
+            if(file_exists("./".$get_picture["picture"])){
+                unlink("./".$get_picture["picture"]);
+            }
+        }
+  
+    $sql=$con->prepare("UPDATE employees SET picture=:picture WHERE id=:id");//Replace the uploaded picture
+    $sql->bindParam(":picture", $filePictureName);
+    $sql->bindParam(":id", $txtID);
+    $sql->execute();
+  }
+
+  header("location: index.php");
+}
 ?>
+
 
 <br>
 <div class="card">
@@ -41,7 +101,10 @@ if (isset($_GET['txtID'])) {
 
       <div class="mb-3">
         <label for="picture" class="form-label">Picture: </label>
-        "<?= $picture;?>"
+        <br/>
+        <img width="100" src="<?= $picture; ?>" class="rounded" alt=""/>
+        <br/><br/>
+
         <input type="file" class="form-control" name="picture" id="picture" aria-describedby="helpId">
       </div>
 
@@ -57,10 +120,9 @@ if (isset($_GET['txtID'])) {
 
       <div class="mb-3">
         <label for="idrole" class="form-label">Role: </label>
-        "<?= $idrole;?>"
         <select class="form-select form-select-sm" name="idrole" id="idrole">
           <?php foreach ($rolelist as $key) { ?>
-            <option <?= ($idrole==$key['id'])?"selected":""?> value="<?= $key['id']?>">
+            <option <?= ($idrole==$key['id'])?"selected":"";?> value="<?= $key['id']?>">
               <?= $key['roledescription']?></option>
               <?php } ?>
         </select>
@@ -81,7 +143,7 @@ if (isset($_GET['txtID'])) {
         <input type="date" value="<?= $entrydate;?>" class="form-control" name="entrydate" id="entrydate" aria-describedby="helpId">
       </div>
 
-      <button type="submit" class="btn btn-success"> Submit </button>
+      <button type="submit" class="btn btn-success"> Save </button>
       <a name="" id="" class="btn btn-danger" href="index.php" role="button">Cancel</a>
     </form>
 
