@@ -20,7 +20,6 @@ if($_POST){
   $sql->bindParam(":email", $email);
   $sql->bindParam(":phone", $phone);
   $sql->bindParam(":entrydate", $entrydate);
-
   
   $date_picture = new DateTime(); //Get current time
   $filePictureName=($picture!='')?$date_picture->getTimestamp()."_".$_FILES["picture"]['name']:""; //Create new file name with the current time
@@ -29,18 +28,16 @@ if($_POST){
   if($tmp_picture!=''){ //If the temporary picture is not empty
     move_uploaded_file($tmp_picture, "./".$filePictureName); //Moves the temporary file to a new location
   }
+
   $sql->bindParam(":picture", $filePictureName);//Update the name in the database
   $sql->execute();
 
   header("location: index.php");
-
 }
 
 $sql = $con->prepare("SELECT * FROM roles");
 $sql->execute();
 $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-
 ?>
 
 <?php include("../../templates/header.php"); ?>
@@ -73,8 +70,8 @@ $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
         <label for="" class="form-label">Role</label>
         <select class="form-select form-select-sm" name="idrole" id="idrole">
           <?php foreach ($rolelist as $key) { ?>
-            <option value="<?php echo $key['id']?>">
-              <?php echo $key['roledescription']?></option>
+            <option value="<?= $key['id']?>">
+              <?= $key['roledescription']?></option>
               <?php } ?>
         </select>
 

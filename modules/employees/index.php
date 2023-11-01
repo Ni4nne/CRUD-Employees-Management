@@ -3,27 +3,23 @@
 if (isset($_GET['txtID'])) {
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 
-    //Search the picture of the employee
+    //Search employee's picture
     $sql = $con->prepare("SELECT picture FROM employees where id=:id");
     $sql->bindParam(":id", $txtID);
     $sql->execute();
     $get_picture= $sql->fetch(PDO::FETCH_LAZY);
 
+    //Delete employee's picture
     if(isset($get_picture["picture"]) && $get_picture["picture"]!=""){
         if(file_exists("./".$get_picture["picture"])){
             unlink("./".$get_picture["picture"]);
-
         }
     }
 
-
-
-    /*
     $sql = $con->prepare("DELETE FROM employees WHERE id=:id");
     $sql->bindParam(":id", $txtID);
     $sql->execute();
     header("location: index.php");
-    */
 }
 
 $sql = $con->prepare("SELECT *,
@@ -65,21 +61,21 @@ $employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($employeeslist as $key) { ?>
 
                     <tr class="">
-                        <td> <?php echo $key['id']; ?> </td>
+                        <td> <?= $key['id']; ?> </td>
                         <td>
                             <img width="70" 
-                            src="<?php echo $key['picture']; ?>"
+                            src="<?= $key['picture']; ?>"
                             class="img-fluid rounded" alt=""/>  
                         </td>
-                        <td> <?php echo $key['lastname']; ?> </td>
-                        <td> <?php echo $key['firstname']; ?> </td>
-                        <td> <?php echo $key['role']; ?> </td>
-                        <td> <?php echo $key['email']; ?> </td>
-                        <td> <?php echo $key['phone']; ?> </td>
-                        <td> <?php echo $key['entrydate']; ?> </td>
+                        <td> <?= $key['lastname']; ?> </td>
+                        <td> <?= $key['firstname']; ?> </td>
+                        <td> <?= $key['role']; ?> </td>
+                        <td> <?= $key['email']; ?> </td>
+                        <td> <?= $key['phone']; ?> </td>
+                        <td> <?= $key['entrydate']; ?> </td>
                         <td> 
-                            <a class="btn btn-primary" href="update.php?txtID=<?php echo $key['id']; ?>" role="button">Update</a>
-                            <a class="btn btn-danger" href="index.php?txtID=<?php echo $key['id']; ?>" role="button">Delete</a>
+                            <a class="btn btn-primary" href="update.php?txtID=<?= $key['id']; ?>" role="button">Update</a>
+                            <a class="btn btn-danger" href="index.php?txtID=<?= $key['id']; ?>" role="button">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>

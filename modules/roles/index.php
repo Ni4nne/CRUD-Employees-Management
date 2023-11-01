@@ -36,11 +36,11 @@ $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($rolelist as $key) { ?>
 
                         <tr class="">
-                            <td scope="row"><?php echo $key['id']; ?></td>
-                            <td><?php echo $key['roledescription']; ?></td>
+                            <td scope="row"><?= $key['id']; ?></td>
+                            <td><?= $key['roledescription']; ?></td>
                             <td>
-                                <a class="btn btn-primary" href="update.php?txtID=<?php echo $key['id']; ?>" role="button">Update</a>
-                                <a class="btn btn-danger" href="index.php?txtID=<?php echo $key['id']; ?>" role="button">Delete</a>
+                                <a class="btn btn-primary" href="update.php?txtID=<?= $key['id']; ?>" role="button">Update</a>
+                                <a class="btn btn-danger" href="index.php?txtID=<?= $key['id']; ?>" role="button">Delete</a>
                             </td>
                         </tr>
 

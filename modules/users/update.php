@@ -35,29 +35,29 @@ if($_POST){
 <br>
 <div class="card">
     <div class="card-header">
-        Role information
+        Update User
     </div>
     <div class="card-body">
         <form action="" method="POST">
             <div class="mb-3">
               <label for="txtID" class="form-label">ID:</label>
-              <input type="text" value="<?php echo $txtID;?>"
+              <input type="text" value="<?= $txtID;?>"
                 class="form-control" readonly name="txtID" id="txtID" aria-describedby="helpId" placeholder="">
             </div>
 
             <div class="mb-3">
                 <label for="username" class="form-label">User Name</label>
-                <input type="text"value="<?php echo $username;?>" class="form-control" name="username" id="username" aria-describedby="helpId">
+                <input type="text"value="<?= $username;?>" class="form-control" name="username" id="username" aria-describedby="helpId">
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email"value="<?php echo $email;?>" class="form-control" name="email" id="email" aria-describedby="helpId">
+                <input type="email"value="<?= $email;?>" class="form-control" name="email" id="email" aria-describedby="helpId">
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password"value="<?php echo $password;?>" class="form-control" name="password" id="password" aria-describedby="helpId">
+                <input type="password"value="<?= $password;?>" class="form-control" name="password" id="password" aria-describedby="helpId">
             </div>
 
             <button type="submit" class="btn btn-success"> Save </button>

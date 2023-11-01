@@ -21,15 +21,15 @@
             <a class="nav-link active" href="#" aria-current="page">System <span class="visually-hidden">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $url_base;?>modules/employees">Employees</a>
+            <a class="nav-link" href="<?= $url_base;?>modules/employees">Employees</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $url_base;?>modules/roles">Roles</a>
+            <a class="nav-link" href="<?= $url_base;?>modules/roles">Roles</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo $url_base;?>modules/users">Users</a>
+            <a class="nav-link" href="<?= $url_base;?>modules/users">Users</a>
         </li>
 
         <li class="nav-item">

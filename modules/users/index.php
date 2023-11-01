@@ -38,13 +38,13 @@ $userlist = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($userlist as $key) { ?>
                         <tr class="">
-                            <td scope="row"><?php echo $key['id']; ?></td>
-                            <td><?php echo $key['username']; ?></td>
-                            <td><?php echo $key['email']; ?></td>
-                            <td><?php echo $key['password']; ?></td>
+                            <td scope="row"><?= $key['id']; ?></td>
+                            <td><?= $key['username']; ?></td>
+                            <td><?= $key['email']; ?></td>
+                            <td><?= $key['password']; ?></td>
                             <td>
-                                <a class="btn btn-primary" href="update.php?txtID=<?php echo $key['id']; ?>" role="button">Update</a>
-                                <a class="btn btn-danger" href="index.php?txtID=<?php echo $key['id']; ?>" role="button">Delete</a>
+                                <a class="btn btn-primary" href="update.php?txtID=<?= $key['id']; ?>" role="button">Update</a>
+                                <a class="btn btn-danger" href="index.php?txtID=<?= $key['id']; ?>" role="button">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>

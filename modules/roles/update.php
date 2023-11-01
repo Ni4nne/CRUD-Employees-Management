@@ -22,26 +22,24 @@ if($_POST){
     
 }?>
 
-
-
 <?php include("../../templates/header.php"); ?>
 
 <br>
 <div class="card">
     <div class="card-header">
-        Role information
+        Update Role
     </div>
     <div class="card-body">
         <form action="" method="POST">
             <div class="mb-3">
               <label for="txtID" class="form-label">ID:</label>
-              <input type="text" value="<?php echo $txtID;?>"
+              <input type="text" value="<?= $txtID;?>"
                 class="form-control" readonly name="txtID" id="txtID" aria-describedby="helpId" placeholder="">
             </div>
 
             <div class="mb-3">
                 <label for="roledescription" class="form-label">Role Name</label>
-                <input type="text"value="<?php echo $roledescription;?>" class="form-control" name="roledescription" id="roledescription" aria-describedby="helpId">
+                <input type="text"value="<?= $roledescription;?>" class="form-control" name="roledescription" id="roledescription" aria-describedby="helpId">
             </div>
 
             <button type="submit" class="btn btn-success"> Save </button>
