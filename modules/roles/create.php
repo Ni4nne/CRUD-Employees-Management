@@ -1,13 +1,15 @@
 <?php include("../../database.php");
 
-if($_POST){
+if ($_POST) {
 
-        $roledescription=(isset($_POST["roledescription"])?$_POST["roledescription"]:"");
-        $sql=$con->prepare("INSERT INTO roles(id,roledescription) VALUES (null, :roledescription)");
-        $sql->bindParam(":roledescription", $roledescription);
-        $sql->execute();
-        header("location: index.php");
-}?>
+    $roledescription = (isset($_POST["roledescription"]) ? $_POST["roledescription"] : "");
+    $sql = $con->prepare("INSERT INTO roles(id,roledescription) VALUES (null, :roledescription)");
+    $sql->bindParam(":roledescription", $roledescription);
+    $sql->execute();
+    
+    $message = "Item added";
+    header("location: index.php?message=" . $message);
+} ?>
 
 <?php include("../../templates/header.php"); ?>
 

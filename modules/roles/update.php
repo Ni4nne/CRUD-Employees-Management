@@ -18,7 +18,9 @@ if($_POST){
     $sql->bindParam(":roledescription", $roledescription);
     $sql->bindParam(":id", $txtID);
     $sql->execute();
-    header("location: index.php");
+
+    $message = "Item updated";
+    header("location: index.php?message=" . $message);
     
 }?>
 

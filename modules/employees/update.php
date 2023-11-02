@@ -79,7 +79,8 @@ if($_POST){
     $sql->execute();
   }
 
-  header("location: index.php");
+  $message="Item updated";
+  header("location: index.php?message=".$message);
 }
 ?>
 

@@ -7,11 +7,13 @@ if (isset($_GET['txtID'])) {
     $sql->bindParam(":id", $txtID);
     $sql->execute();
     
-    header("location: index.php");
+    $message="Item deleted";
+    header("location: index.php?message=".$message);
 }
 
 $sql = $con->prepare("SELECT * FROM users");
 $sql->execute();
+
 $userlist = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>

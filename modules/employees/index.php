@@ -19,7 +19,9 @@ if (isset($_GET['txtID'])) {
     $sql = $con->prepare("DELETE FROM employees WHERE id=:id");
     $sql->bindParam(":id", $txtID);
     $sql->execute();
-    header("location: index.php");
+
+    $message="Item deleted";
+    header("location: index.php?message=".$message);
 }
 
 $sql = $con->prepare("SELECT *,
@@ -75,7 +77,7 @@ $employeeslist = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <td> <?= $key['entrydate']; ?> </td>
                         <td> 
                             <a class="btn btn-primary" href="update.php?txtID=<?= $key['id']; ?>" role="button">Update</a>
-                            <a class="btn btn-danger" href="index.php?txtID=<?= $key['id']; ?>" role="button">Delete</a>
+                            <a class="btn btn-danger" href="javascript:deleteRole(<?= $key['id']; ?>);" role="button">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>

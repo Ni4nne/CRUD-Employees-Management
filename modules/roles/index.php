@@ -1,22 +1,22 @@
 <?php include("../../database.php");
+      include("../../templates/header.php");
 
 if (isset($_GET['txtID'])) {
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
     $sql = $con->prepare("DELETE FROM roles WHERE id=:id");
     $sql->bindParam(":id", $txtID);
     $sql->execute();
-    header("location: index.php");
+    
+    $message="Item deleted";
+    header("location: index.php?message=".$message);
 }
 
 $sql = $con->prepare("SELECT * FROM roles");
 $sql->execute();
-$rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-?>
-
-<?php include("../../templates/header.php"); ?>
+$rolelist = $sql->fetchAll(PDO::FETCH_ASSOC); ?>
 
 <br>
+
 <div class="card">
     <div class="card-header">
         <a name="" id="" class="btn btn-primary" href="create.php" role="button">Add new role</a>
@@ -40,7 +40,7 @@ $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= $key['roledescription']; ?></td>
                             <td>
                                 <a class="btn btn-primary" href="update.php?txtID=<?= $key['id']; ?>" role="button">Update</a>
-                                <a class="btn btn-danger" href="index.php?txtID=<?= $key['id']; ?>" role="button">Delete</a>
+                                <a class="btn btn-danger" href="javascript:deleteRole(<?= $key['id']; ?>);" role="button">Delete</a>
                             </td>
                         </tr>
 

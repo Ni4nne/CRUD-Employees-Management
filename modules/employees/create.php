@@ -32,7 +32,8 @@ if($_POST){
   $sql->bindParam(":picture", $filePictureName);//Update the name in the database
   $sql->execute();
 
-  header("location: index.php");
+  $message="Item added";
+  header("location: index.php?message=".$message);
 }
 
 $sql = $con->prepare("SELECT * FROM roles");
