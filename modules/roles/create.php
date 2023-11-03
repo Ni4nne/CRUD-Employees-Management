@@ -22,7 +22,7 @@ if ($_POST) {
         <form action="" method="POST">
 
             <div class="mb-3">
-                <label for="roledescription" class="form-label">Role Name</label>
+                <label for="roledescription" class="form-label">Name</label>
                 <input type="text" class="form-control" name="roledescription" id="roledescription" aria-describedby="helpId">
             </div>
 

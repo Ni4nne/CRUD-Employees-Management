@@ -13,7 +13,6 @@ if (isset($_GET['txtID'])) {
 
 $sql = $con->prepare("SELECT * FROM users");
 $sql->execute();
-
 $userlist = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -46,7 +45,7 @@ $userlist = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= $key['password']; ?></td>
                             <td>
                                 <a class="btn btn-primary" href="update.php?txtID=<?= $key['id']; ?>" role="button">Update</a>
-                                <a class="btn btn-danger" href="index.php?txtID=<?= $key['id']; ?>" role="button">Delete</a>
+                                <a class="btn btn-danger" href="javascript:deleteitem(<?= $key['id']; ?>);" role="button">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>

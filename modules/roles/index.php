@@ -40,7 +40,7 @@ $rolelist = $sql->fetchAll(PDO::FETCH_ASSOC); ?>
                             <td><?= $key['roledescription']; ?></td>
                             <td>
                                 <a class="btn btn-primary" href="update.php?txtID=<?= $key['id']; ?>" role="button">Update</a>
-                                <a class="btn btn-danger" href="javascript:deleteRole(<?= $key['id']; ?>);" role="button">Delete</a>
+                                <a class="btn btn-danger" href="javascript:deleteitem(<?= $key['id']; ?>);" role="button">Delete</a>
                             </td>
                         </tr>
 

@@ -29,17 +29,17 @@ if ($_POST) {
         <form action="" method="POST">
 
             <div class="mb-3">
-                <label for="username" class="form-label">User's Name</label>
+                <label for="username" class="form-label">Name</label>
                 <input type="text" class="form-control" name="username" id="username" aria-describedby="helpId">
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">User's Email</label>
+                <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" id="email" aria-describedby="helpId">
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">User's Password</label>
+                <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId">
             </div>
 

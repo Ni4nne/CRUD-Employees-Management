@@ -25,7 +25,7 @@
 </script>
 
 <script>
-  function deleteRole(id) {
+  function deleteitem(id) {
     Swal.fire({
       title: 'Do you want to delete?',
       showCancelButton: true,
