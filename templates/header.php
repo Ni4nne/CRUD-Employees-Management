@@ -1,4 +1,11 @@
-<?php $url_base = "http://localhost/crudemployees/"; ?>
+<?php
+session_start();
+$url_base = "http://localhost/crudemployees/"; 
+
+if(!isset($_SESSION["user"])){
+  header("Location:".$url_base."login.php");
+}
+?>
 
 <!doctype html>
 <html lang="es">
@@ -38,7 +45,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
+        <a class="nav-link" href="<?= $url_base; ?>logout.php">Logout</a>
       </li>
     </ul>
   </nav>
