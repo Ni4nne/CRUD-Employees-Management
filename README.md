@@ -6,6 +6,7 @@
 
 <p align="center"><img src="https://img.shields.io/badge/STATUS-FINISHED-green"></p>
 
+https://github.com/Ni4nne/CRUD-Employees-PHP/assets/101357594/beb1e019-e807-4367-8f92-5bb7d523d8f8
 
 
 
